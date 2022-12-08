@@ -34,3 +34,19 @@ it('should return array or empty', function () {
     expect($result2)->toBe(strtoupper('example'));
     // expect($result2)->not->toBeEmpty();
 });
+
+it('test sum with many results', function (
+    int $num1,
+    int $num2,
+    int $sum
+) {
+    $math = new Math;
+    $result = $math->sum($num1, $num2);
+    expect($result)->toBe($sum);
+    expect($result)->toBeInt();
+})
+->with([
+    [4, 6, 10],
+    'test 2' => ['num1' => 6, 'num2' => 4, 'sum' => 10],
+    'test 3' => [6000, 6000, 12000],
+]);
