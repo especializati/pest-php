@@ -2,26 +2,42 @@
 
 use Src\Example\Math;
 
+beforeAll(function () {
+    echo "beforeAll \n";
+});
+
+afterAll(function () {
+    echo "afterAll \n";
+});
+
+beforeEach(function () {
+    echo "beforeEach \n";
+    $this->math = new Math;
+});
+afterEach(function () {
+    echo "afterEach \n";
+});
+
 it('test sum', function () {
-    $math = new Math;
-    $result = $math->sum(4, 2);
+    echo "test sum \n";
+    $result = $this->math->sum(4, 2);
     expect($result)->toBe(6);
     expect($result)->toBeInt();
 
-    $result = $math->sum(9000, 2);
+    $result = $this->math->sum(9000, 2);
     expect($result)->toBe(9002);
 });
 
 it('should return float', function () {
-    $math = new Math;
-    $result = $math->pi();
+    echo "should return float \n";
+    $result = $this->math->pi();
 
     expect($result)->toBeFloat();
 });
 
 it('should return array or empty', function () {
-    $math = new Math;
-    $result = $math->location();
+    echo "should return array or empty \n";
+    $result = $this->math->location();
 
     expect($result)->toBeArray();
     expect($result)->toMatchArray([
@@ -29,7 +45,7 @@ it('should return array or empty', function () {
         'longitude' => 413123,
     ]);
 
-    $result2 = $math->location('example');
+    $result2 = $this->math->location('example');
     expect($result2)->toBeString();
     expect($result2)->toBe(strtoupper('example'));
     // expect($result2)->not->toBeEmpty();
@@ -40,8 +56,8 @@ it('test sum with many results', function (
     int $num2,
     int $sum
 ) {
-    $math = new Math;
-    $result = $math->sum($num1, $num2);
+    echo "test sum with many results \n";
+    $result = $this->math->sum($num1, $num2);
     expect($result)->toBe($sum);
     expect($result)->toBeInt();
 })
