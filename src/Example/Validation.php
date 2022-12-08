@@ -12,4 +12,11 @@ class Validation
             throw new Exception('invalid qty characters');
         }
     }
+
+    public static function maxLength(?string $value = '', int $length = 255)
+    {
+        if (!$value || strlen($value) > $length) {
+            throw new CustomException('invalid qty characters');
+        }
+    }
 }

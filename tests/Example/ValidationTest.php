@@ -1,5 +1,6 @@
 <?php
 
+use Src\Example\CustomException;
 use Src\Example\Validation;
 
 it('validate min length', function () {
@@ -16,3 +17,8 @@ it('validate is null', function () {
     Validation::minLength(null);
 })
 ->throws(Exception::class);
+
+it('validate custom exception', function () {
+    Validation::maxLength();
+})
+->throws(CustomException::class);
